@@ -4,7 +4,7 @@
         "details": [
             {
                 "appID": "UM246WFXVS.ru.ramblerco.livejournal",
-                "paths": [ "https://*.github.io/testsite/", "https://cognitivedisson.github.io/testsite/","https://*.github.io/testsite/*.html"]
+                "paths": [ "https://*.github.io", "https://*.github.io","https://*.github.io/*.html"]
             }
         ]
     }
