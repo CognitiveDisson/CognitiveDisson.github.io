@@ -4,7 +4,7 @@
         "details": [
             {
                 "appID": "UM246WFXVS.ru.ramblerco.livejournal",
-                "paths": ["*", "NOT /test/"]
+                "paths": ["*", "NOT /123123.html"]
             }
         ]
     }
