@@ -1,4 +1,10 @@
 {  
+   activitycontinuation: {
+      apps: [
+         "UM246WFXVS.ru.ramblerco.livejournal",
+         "7SMPM83ZV6.ru.ramblerco.livejournal.enterprise"
+      ]
+   },
    "applinks":{  
       "apps":[  
 
