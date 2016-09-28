@@ -1,11 +1,25 @@
-{
-    "applinks": {
-        "apps": [],
-        "details": [
-            {
-                "appID": "UM246WFXVS.ru.ramblerco.livejournal",
-                "paths": [ "NOT /test/*", "NOT /123123.html", "/*.html", "*"]
-            }
-        ]
-    }
+{  
+   "applinks":{  
+      "apps":[  
+
+      ],
+      "details":[  
+         {  
+            "appID":"UM246WFXVS.ru.ramblerco.livejournal",
+            "paths":[  
+               "/",
+               "/profile",
+               "/*.html"
+            ]
+         },
+         {  
+            "appID":"7SMPM83ZV6.ru.ramblerco.livejournal.enterprise",
+            "paths":[  
+               "/",
+               "/profile",
+               "/*.html"
+            ]
+         }
+      ]
+   }
 }
