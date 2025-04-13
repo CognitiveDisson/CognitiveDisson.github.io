@@ -20,8 +20,12 @@ async function loadPost() {
         return;
     }
 
+    // Load main data for site title
+    const mainData = await loadJSON('./data/main.json');
+    const baseTitle = mainData?.header?.title?.replace(/⚔️/g, '').trim() || 'My Blog';
+    
     // Update page title
-    document.title = `${post.title} | CognitiveDisson`;
+    document.title = `${post.title} | ${baseTitle}`;
 
     // Update header with post title
     document.getElementById('project-name').textContent = post.title.replace(/⚔️/g, '').trim();
