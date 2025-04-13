@@ -1,0 +1,93 @@
+{
+  "header": {
+    "title": "⚔️ CognitiveDisson ⚔️",
+    "subtitle": "Vadim Smal",
+    "tagline": "iOS Software Archmage Lvl.99",
+    "navigation": [
+      {
+        "text": "🗡️ About",
+        "href": "#about"
+      },
+      {
+        "text": "📜 Chronicles",
+        "href": "#projects"
+      },
+      {
+        "text": "🏰 Guild",
+        "href": "#contact"
+      },
+      {
+        "text": "🏰 Stronghold",
+        "href": "https://github.com/CognitiveDisson"
+      }
+    ]
+  },
+  "about": {
+    "title": "🗡️ The Mobile Sorcerer",
+    "description": "I'm an experienced iOS Software Engineer, specialising in mobile development infrastructure. Key areas include build time optimization, mobile application architecture, development environment, CI/CD, and release management.",
+    "skills": {
+      "title": "⚡ Dark Arts & Spells",
+      "items": [
+        "🗡️ iOS Development",
+        "🛡️ Objective-C",
+        "⚔️ Swift",
+        "🏹 CI/CD",
+        "🎯 Build Optimization",
+        "🔮 Architecture Design"
+      ]
+    },
+    "experience": {
+      "title": "🏰 Quest Log",
+      "items": [
+        {
+          "company": "Spotify",
+          "role": "Software Engineer",
+          "duration": "August 2021 - Present"
+        },
+        {
+          "company": "Skyscanner",
+          "role": "Senior Software Engineer",
+          "duration": "September 2019 - August 2021"
+        },
+        {
+          "company": "AVITO.ru",
+          "role": "Senior Software Engineer",
+          "duration": "February 2017 - September 2019"
+        },
+        {
+          "company": "RAMBLER&Co",
+          "role": "iOS Team Lead",
+          "duration": "February 2015 - February 2017"
+        }
+      ]
+    },
+    "education": {
+      "title": "📚 Training Grounds",
+      "items": [
+        {
+          "school": "Samara State Aerospace University",
+          "degree": "Master's degree, Computer and Information Systems Security",
+          "duration": "2009 - 2014"
+        }
+      ]
+    }
+  },
+  "contact": {
+    "title": "📜 Send a Message",
+    "description": "Want to start a new quest together? Let's join forces!",
+    "social": [
+      {
+        "name": "📧 Send Raven",
+        "url": "mailto:kenshin312@gmail.com"
+      },
+      {
+        "name": "🏰 LinkedIn Kingdom",
+        "url": "https://www.linkedin.com/in/vadim-smal"
+      }
+    ]
+  },
+  "footer": {
+    "copyright": "© 2024 CognitiveDisson",
+    "tagline": "Made with ♥ and Magic"
+  }
+} 

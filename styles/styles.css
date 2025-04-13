@@ -1,0 +1,158 @@
+/* Base styles */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Page structure */
+.page-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-header {
+    width: 100%;
+}
+
+.main-content {
+    flex: 1 0 auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Sections */
+section {
+    width: 100%;
+    max-width: 1200px;
+    padding: 2rem;
+    box-sizing: border-box;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* Section ordering */
+#about { order: 1; }
+#posts { order: 2; }
+#chronicles { order: 3; }
+#contact { order: 4; }
+
+/* Posts grid */
+.posts-grid {
+    width: 100%;
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+/* Footer */
+.site-footer {
+    width: 100%;
+    margin-top: auto;
+    flex-shrink: 0;
+}
+
+/* Clear any floating elements */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Reset and ensure content is visible */
+.main-content {
+    display: flex !important; /* Override any other display settings */
+    flex-direction: column !important;
+    flex: 1 0 auto !important; /* This ensures the content takes up available space */
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative;
+}
+
+/* Remove any scroll-based animations if they exist */
+.main-content > section {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    transition: none !important;
+}
+
+/* Ensure proper section ordering with stronger specificity */
+#about {
+    order: 1 !important;
+}
+
+#posts {
+    order: 2 !important;
+}
+
+#chronicles {
+    order: 3 !important;
+}
+
+#contact {
+    order: 4 !important;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    box-sizing: border-box;
+    margin-bottom: 0 !important;
+}
+
+/* Ensure sections stack properly */
+section {
+    width: 100%;
+    max-width: 1200px; /* or whatever max-width you prefer */
+    margin: 0 auto;
+    padding: 2rem;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+    display: block;
+    margin-bottom: 0 !important;
+}
+
+body {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100vh !important;
+}
+
+/* Footer positioning */
+.site-footer {
+    flex-shrink: 0 !important;
+    width: 100% !important;
+    position: relative !important;
+    z-index: 1;
+    margin-top: auto !important;
+    order: 999 !important; /* Ensure it's always at the bottom */
+}
+
+/* Ensure posts grid takes full width */
+.posts-grid {
+    width: 100%;
+    max-width: 100%;
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+} 
