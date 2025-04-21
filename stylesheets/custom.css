@@ -794,3 +794,50 @@ article {
 .placeholder-text.short {
   width: 80%;
 }
+
+/* Posts grid styling */
+.posts-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px; /* Match other sections */
+    margin: 0 auto;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+.post-card {
+    background: var(--dark-bg);
+    border: var(--pixel-border) solid var(--primary-color);
+    box-shadow: 0 0 10px rgba(139, 49, 238, 0.3);
+    padding: 2rem;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+}
+
+.post-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 20px rgba(139, 49, 238, 0.5);
+}
+
+/* Keep existing post-card content styles */
+.post-card h3 {
+    margin-top: 0;
+    color: var(--accent-color);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.post-card .post-date {
+    font-size: 0.8rem;
+    color: var(--text-color);
+    opacity: 0.8;
+    margin-bottom: 1rem;
+}
+
+.post-card p {
+    color: var(--text-color);
+    line-height: 1.5;
+}
