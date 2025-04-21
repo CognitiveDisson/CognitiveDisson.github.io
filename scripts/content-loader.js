@@ -223,7 +223,7 @@ async function initializePage() {
                 <main class="main-content">
                     <section id="about"></section>
                     <section id="posts" class="posts-section">
-                        <h2>Quest Log</h2>
+                        <h2>Chronicles</h2>
                         <div class="posts-grid"></div>
                     </section>
                     <section id="chronicles"></section>

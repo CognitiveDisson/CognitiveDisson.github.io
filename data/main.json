@@ -5,30 +5,26 @@
     "tagline": "iOS Software Archmage Lvl.99",
     "navigation": [
       {
-        "text": "🗡️ About",
+        "text": "🧙‍♂️ About",
         "href": "#about"
       },
       {
         "text": "📜 Chronicles",
-        "href": "#projects"
+        "href": "#posts"
       },
       {
-        "text": "🏰 Guild",
+        "text": "🏰 Contact",
         "href": "#contact"
-      },
-      {
-        "text": "🏰 Stronghold",
-        "href": "https://github.com/CognitiveDisson"
       }
     ]
   },
   "about": {
-    "title": "🗡️ The Mobile Sorcerer",
+    "title": "🧙‍♂️ The Mobile Sorcerer",
     "description": "I'm an experienced iOS Software Engineer, specialising in mobile development infrastructure. Key areas include build time optimization, mobile application architecture, development environment, CI/CD, and release management.",
     "skills": {
       "title": "⚡ Dark Arts & Spells",
       "items": [
-        "🗡️ iOS Development",
+        "✨ iOS Development",
         "🛡️ Objective-C",
         "⚔️ Swift",
         "🏹 CI/CD",
@@ -77,11 +73,15 @@
     "description": "Want to start a new quest together? Let's join forces!",
     "social": [
       {
-        "name": "📧 Send Raven",
+        "name": "🐦‍⬛ Send Raven",
         "url": "mailto:kenshin312@gmail.com"
       },
       {
-        "name": "🏰 LinkedIn Kingdom",
+        "text": "🏰 GitHub Castle",
+        "href": "https://github.com/CognitiveDisson"
+      },
+      {
+        "name": "👑 LinkedIn Kingdom",
         "url": "https://www.linkedin.com/in/vadim-smal"
       }
     ]
