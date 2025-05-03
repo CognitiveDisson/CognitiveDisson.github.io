@@ -199,7 +199,7 @@ function initializePostLinks() {
                 mainContent.innerHTML = `
                     <section id="post-content">
                         ${content}
-                        <button onclick="window.location.reload()">Back</button>
+                        <a href="./index.html" class="btn post-link">Back</a>
                     </section>
                 `;
             } catch (error) {
