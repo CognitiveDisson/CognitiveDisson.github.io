@@ -20,16 +20,18 @@
   },
   "about": {
     "title": "🧙‍♂️ The Mobile Sorcerer",
-    "description": "I'm an experienced iOS Software Engineer, specialising in mobile development infrastructure. Key areas include build time optimization, mobile application architecture, development environment, CI/CD, and release management.",
+    "description": "I'm an experienced Software Engineer with iOS and macOS development background, specializing in mobile development infrastructure. Key areas include build systems like Xcode Build System and Bazel, build time optimization, mobile application architecture, development environment, CI/CD, and release management.",
     "skills": {
       "title": "⚡ Dark Arts & Spells",
       "items": [
+        "⚒️ Xcode Build System",
+        "🔮 Bazel",
         "✨ iOS Development",
         "🛡️ Objective-C",
         "⚔️ Swift",
         "🏹 CI/CD",
         "🎯 Build Optimization",
-        "🔮 Architecture Design"
+        "💎 Architecture Design"
       ]
     },
     "experience": {
@@ -37,7 +39,7 @@
       "items": [
         {
           "company": "Spotify",
-          "role": "Software Engineer",
+          "role": "Senior Software Engineer",
           "duration": "August 2021 - Present"
         },
         {
@@ -74,7 +76,7 @@
     "social": [
       {
         "name": "🐦‍⬛ Send Raven",
-        "url": "mailto:kenshin312@gmail.com"
+        "url": "mailto:CognitiveDisson@gmail.com"
       },
       {
         "name": "🏰 GitHub Castle",
