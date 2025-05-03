@@ -134,6 +134,25 @@ body.loaded {
   animation: float 2s ease-in-out infinite;
   position: relative;
   z-index: 1;
+  font-size: 1.5rem;
+  padding: 0 1rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+@media screen and (min-width: 768px) {
+  .project-name {
+    font-size: 2rem;
+    padding: 0 2rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .project-name {
+    font-size: 2.5rem;
+    padding: 0 3rem;
+  }
 }
 
 .project-tagline {
