@@ -317,6 +317,21 @@ body::after {
   box-shadow: 0 0 22px rgba(139, 49, 238, 0.12);
   border-radius: 6px;
   backdrop-filter: blur(2px);
+  position: relative;
+  overflow: hidden;
+}
+
+.main-content section::before {
+  content: "";
+  position: absolute;
+  inset: -30% -10%;
+  background:
+    radial-gradient(120px 80px at 20% 30%, rgba(115, 247, 255, 0.18), transparent 70%),
+    radial-gradient(140px 90px at 80% 20%, rgba(255, 107, 151, 0.16), transparent 70%);
+  opacity: 0.7;
+  transform: translate3d(0, var(--panel-shift, 0px), 0);
+  transition: transform 0.2s ease-out;
+  pointer-events: none;
 }
 
 .main-content h2 {

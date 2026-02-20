@@ -81,4 +81,27 @@ if (motionOk) {
             rafId = window.requestAnimationFrame(updateHeader);
         });
     }
+
+    const sections = Array.from(document.querySelectorAll('.main-content section'));
+    if (sections.length) {
+        let rafId = null;
+        const updateSections = () => {
+            const viewportCenter = window.innerHeight * 0.6;
+            sections.forEach((section) => {
+                const rect = section.getBoundingClientRect();
+                const offset = ((rect.top - viewportCenter) / window.innerHeight) * -12;
+                section.style.setProperty('--panel-shift', `${offset}px`);
+            });
+            rafId = null;
+        };
+        window.addEventListener('scroll', () => {
+            if (rafId) return;
+            rafId = window.requestAnimationFrame(updateSections);
+        });
+        window.addEventListener('resize', () => {
+            if (rafId) return;
+            rafId = window.requestAnimationFrame(updateSections);
+        });
+        updateSections();
+    }
 }
