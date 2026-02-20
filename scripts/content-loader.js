@@ -63,6 +63,8 @@ function createSocialLinks(social) {
 function populateHeader(data) {
     const header = document.querySelector('.page-header');
     header.innerHTML = `
+        <div class="rune-field"></div>
+        <div class="particle-field"></div>
         <h1 class="project-name">${data.header.title}</h1>
         <h2 class="project-subtitle">${data.header.subtitle}</h2>
         <p class="project-tagline">

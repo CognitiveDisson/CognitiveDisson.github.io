@@ -1,39 +1,58 @@
-// Scroll reveal animation with pixel-perfect movement
-const observerOptions = {
-    threshold: 0.1
-};
+const motionOk = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -10% 0px' };
+let observer = null;
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.transform = 'translate(0, 0)';
-            entry.target.style.opacity = '1';
-        }
-    });
-}, observerOptions);
-
-// Dark themed hover effects
-const interactiveElements = document.querySelectorAll('a, button, .skill-tag, .project-card');
-interactiveElements.forEach(elem => {
-    elem.addEventListener('mouseenter', () => {
-        playDarkSound();
-        elem.style.boxShadow = '0 0 20px rgba(139, 49, 238, 0.5)';
-    });
-    elem.addEventListener('mouseleave', () => {
-        elem.style.boxShadow = '';
-    });
-});
-
-// Dark themed sound effect
-function playDarkSound() {
-    const audio = new Audio();
-    audio.src = 'data:audio/wav;base64,...'; // Base64 dark sound effect
-    audio.volume = 0.1;
-    audio.play();
+if (motionOk && 'IntersectionObserver' in window) {
+    observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
 }
 
-// Loading animation
+function registerReveal(element, delayMs) {
+    if (!element || element.dataset.revealInit) return;
+    element.dataset.revealInit = '1';
+    element.classList.add('reveal');
+    if (typeof delayMs === 'number') {
+        element.style.transitionDelay = `${delayMs}ms`;
+    }
+    if (observer) {
+        observer.observe(element);
+    } else {
+        element.classList.add('is-visible');
+    }
+}
+
+function initializeAnimations(root = document) {
+    const sections = root.querySelectorAll('.main-content section');
+    sections.forEach((section, index) => registerReveal(section, index * 90));
+
+    const postCards = root.querySelectorAll('.post-card');
+    postCards.forEach((card, index) => registerReveal(card, 120 + index * 70));
+
+    const experienceItems = root.querySelectorAll('.experience-item, .education-item');
+    experienceItems.forEach((item, index) => registerReveal(item, 160 + index * 50));
+}
+
+const mutationObserver = new MutationObserver((mutations) => {
+    for (const mutation of mutations) {
+        mutation.addedNodes.forEach(node => {
+            if (node.nodeType === Node.ELEMENT_NODE) {
+                initializeAnimations(node);
+            }
+        });
+    }
+});
+
+mutationObserver.observe(document.documentElement, { childList: true, subtree: true });
+
 window.addEventListener('load', () => {
+    document.body.classList.add('js-ready');
+
     const loadingBar = document.createElement('div');
     loadingBar.classList.add('loading-bar');
     document.body.appendChild(loadingBar);
@@ -44,24 +63,22 @@ window.addEventListener('load', () => {
             loadingBar.remove();
         }, 300);
     }, 1000);
+
+    initializeAnimations();
 });
 
-// Parallax effect for header
-const header = document.querySelector('.page-header');
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    header.style.backgroundPositionY = scrolled * 0.5 + 'px';
-});
-
-// Export animation initialization
-function initializeAnimations() {
-    document.querySelectorAll('.main-content article').forEach((elem) => {
-        elem.style.transform = 'translate(0, 16px)';
-        elem.style.opacity = '0';
-        elem.style.transition = 'all 0.3s steps(3)';
-        observer.observe(elem);
-    });
+if (motionOk) {
+    const header = document.querySelector('.page-header');
+    if (header) {
+        let rafId = null;
+        const updateHeader = () => {
+            const scrolled = window.pageYOffset || 0;
+            header.style.backgroundPosition = `50% ${scrolled * 0.2}px`;
+            rafId = null;
+        };
+        window.addEventListener('scroll', () => {
+            if (rafId) return;
+            rafId = window.requestAnimationFrame(updateHeader);
+        });
+    }
 }
-
-// Initial setup
-initializeAnimations();
