@@ -8,10 +8,6 @@
     "tagline": "Software Archmage Lvl.99",
     "navigation": [
       {
-        "text": "🧙‍♂️ About",
-        "href": "index.html#about"
-      },
-      {
         "text": "📄 Adventurer's Dossier",
         "href": "resume.html"
       },

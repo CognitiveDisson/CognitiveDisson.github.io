@@ -290,7 +290,6 @@ function buildPageShell(mode) {
         <div class="page-wrapper">
             <header class="page-header"></header>
             <main class="main-content">
-                <section id="about"></section>
                 <section id="resume"></section>
                 <section id="posts" class="posts-section">
                     <h2>📜 My Latest Chronicles</h2>
@@ -317,7 +316,6 @@ async function initializePage() {
         updateDocumentMetadata(mainData);
         populateHeader(mainData);
         if (mode === 'home') {
-            populateAbout(mainData);
             populateResumeSection(mainData);
         }
         if (mode === 'resume') {

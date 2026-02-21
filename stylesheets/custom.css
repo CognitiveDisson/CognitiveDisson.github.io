@@ -197,7 +197,7 @@ body::after {
   pointer-events: none;
 }
 
-.page-header .project-name,
+.page-header .hero,
 .page-header .header-nav {
   position: relative;
   z-index: 1;
@@ -296,6 +296,7 @@ body::after {
   position: absolute;
   inset: 0;
   pointer-events: none;
+  z-index: 0;
 }
 
 .page-header .rune-field {
