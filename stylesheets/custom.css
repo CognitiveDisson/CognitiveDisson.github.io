@@ -512,6 +512,11 @@ body::after {
   box-sizing: border-box;
 }
 
+.posts-section .btn {
+  margin-top: 1.5rem;
+  align-self: flex-start;
+}
+
 .post-card {
   background: var(--dark-bg);
   border: var(--pixel-border) solid var(--primary-color);

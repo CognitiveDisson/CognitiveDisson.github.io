@@ -239,6 +239,7 @@ async function initializePage() {
         }
         const mode = document.body.dataset.page || 'home';
         buildPageShell(mode);
+        document.querySelectorAll('#chronicles').forEach((el) => el.remove());
         
         updateDocumentMetadata(mainData);
         populateHeader(mainData);
