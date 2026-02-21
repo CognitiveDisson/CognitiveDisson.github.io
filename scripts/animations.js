@@ -71,20 +71,6 @@ window.addEventListener('load', () => {
 });
 
 if (motionOk) {
-    const header = document.querySelector('.page-header');
-    if (header) {
-        let rafId = null;
-        const updateHeader = () => {
-            const scrolled = window.pageYOffset || 0;
-            header.style.backgroundPosition = `50% ${scrolled * 0.2}px`;
-            rafId = null;
-        };
-        window.addEventListener('scroll', () => {
-            if (rafId) return;
-            rafId = window.requestAnimationFrame(updateHeader);
-        });
-    }
-
     const sections = Array.from(document.querySelectorAll('.main-content section'));
     if (sections.length) {
         let rafId = null;

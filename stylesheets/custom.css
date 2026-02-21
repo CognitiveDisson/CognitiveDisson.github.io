@@ -157,54 +157,12 @@ body::after {
   padding: 1rem 0 2.5rem;
 }
 
-/* Header */
-.page-header {
-  width: 100%;
-  color: #fff;
-  text-align: center;
-  background: var(--dark-bg);
-  border: var(--pixel-border) solid var(--primary-color);
-  box-shadow: 0 0 20px rgba(139, 49, 238, 0.3);
-  position: relative;
-  overflow: hidden;
-  padding: 2rem 1.5rem;
-  box-sizing: border-box;
-  z-index: 3;
-  background-image:
-    radial-gradient(circle at 20% 10%, rgba(139, 49, 238, 0.35), transparent 50%),
-    radial-gradient(circle at 80% 0%, rgba(115, 247, 255, 0.25), transparent 45%);
-  background-size: 120% 120%;
-}
-
-.page-header::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(120deg, rgba(139, 49, 238, 0.12), rgba(255, 107, 151, 0.08));
-  opacity: 0.6;
-  animation: headerPulse 8s ease-in-out infinite;
-  pointer-events: none;
-}
-
-.page-header::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0px, rgba(255, 255, 255, 0.05) 2px, transparent 3px, transparent 6px),
-    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.04) 0px, rgba(255, 255, 255, 0.04) 1px, transparent 2px, transparent 4px);
-  opacity: 0.25;
-  pointer-events: none;
-}
-
-.page-header .hero-card {
-  position: relative;
-  z-index: 1;
-}
-
-.page-header::after,
-.page-header::before {
-  z-index: 0;
+/* Hero section */
+.hero-section {
+  padding: 0;
+  background: none;
+  border: none;
+  box-shadow: none;
 }
 
 .hero-card {
@@ -215,6 +173,7 @@ body::after {
   padding: 1.25rem 1.5rem;
   max-width: 760px;
   margin: 0 auto;
+  position: relative;
 }
 
 .hero {
@@ -223,6 +182,16 @@ body::after {
   justify-content: center;
   gap: 1.25rem;
   flex-wrap: wrap;
+}
+
+.hero-card .hero,
+.hero-card .hero-text,
+.hero-card .hero-name,
+.hero-card .hero-meta,
+.hero-card .hero-badge,
+.hero-card .hero-tagline {
+  position: relative;
+  z-index: 1;
 }
 
 .hero-avatar {
@@ -300,15 +269,20 @@ body::after {
 }
 
 /* Header runes + particles */
-.page-header .rune-field,
-.page-header .particle-field {
+.hero-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-card .rune-field,
+.hero-card .particle-field {
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 0;
 }
 
-.page-header .rune-field {
+.hero-card .rune-field {
   background:
     repeating-linear-gradient(
       90deg,
@@ -328,7 +302,7 @@ body::after {
   animation: runeDrift 18s linear infinite;
 }
 
-.page-header .particle-field {
+.hero-card .particle-field {
   background:
     radial-gradient(2px 2px at 15% 30%, rgba(255, 255, 255, 0.35), transparent 50%),
     radial-gradient(2px 2px at 80% 20%, rgba(125, 249, 176, 0.3), transparent 50%),
@@ -814,10 +788,6 @@ body[data-page="resume"] .main-content section {
 }
 
 /* Post page */
-.post-page .page-header {
-  padding: 2rem;
-}
-
 .post-page .main-content {
   padding-top: 1rem;
 }
@@ -935,7 +905,6 @@ body[data-page="resume"] .main-content section {
 
 /* Responsive */
 @media screen and (max-width: 768px) {
-  .page-header { padding: 2rem 1.25rem; }
   .main-content { padding: 0.5rem 0 2rem; }
   .main-content section { padding: 1.25rem; }
   .social-links { flex-direction: column; align-items: center; gap: 1rem; }

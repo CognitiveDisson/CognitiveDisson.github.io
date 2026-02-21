@@ -29,27 +29,29 @@ async function loadPost() {
 
     // Populate header
     if (mainData?.header) {
-        const header = document.querySelector('.page-header');
-        header.innerHTML = `
-            <div class="rune-field"></div>
-            <div class="particle-field"></div>
-            <div class="hero-card">
-                <div class="hero">
-                    <div class="hero-avatar">
-                        <img src="${mainData.header.avatar}" alt="${mainData.header.name} avatar">
-                    </div>
-                    <div class="hero-text">
-                        <div class="hero-name">${mainData.header.name}</div>
-                        <div class="hero-meta">
-                            <span class="hero-role">${mainData.header.role}</span>
-                            <span class="hero-location">📍 ${mainData.header.location}</span>
+        const hero = document.getElementById('hero');
+        if (hero) {
+            hero.innerHTML = `
+                <div class="hero-card">
+                    <div class="rune-field"></div>
+                    <div class="particle-field"></div>
+                    <div class="hero">
+                        <div class="hero-avatar">
+                            <img src="${mainData.header.avatar}" alt="${mainData.header.name} avatar">
                         </div>
-                        <div class="hero-badge">${mainData.header.title}</div>
-                        <div class="hero-tagline">${mainData.header.tagline}</div>
+                        <div class="hero-text">
+                            <div class="hero-name">${mainData.header.name}</div>
+                            <div class="hero-meta">
+                                <span class="hero-role">${mainData.header.role}</span>
+                                <span class="hero-location">📍 ${mainData.header.location}</span>
+                            </div>
+                            <div class="hero-badge">${mainData.header.title}</div>
+                            <div class="hero-tagline">${mainData.header.tagline}</div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        `;
+            `;
+        }
     }
 
     // Load post content from markdown file

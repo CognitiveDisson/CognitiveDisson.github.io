@@ -61,11 +61,12 @@ function createSocialLinks(social) {
 
 // Function to populate header
 function populateHeader(data) {
-    const header = document.querySelector('.page-header');
-    header.innerHTML = `
-        <div class="rune-field"></div>
-        <div class="particle-field"></div>
+    const hero = document.getElementById('hero');
+    if (!hero) return;
+    hero.innerHTML = `
         <div class="hero-card">
+            <div class="rune-field"></div>
+            <div class="particle-field"></div>
             <div class="hero">
                 <div class="hero-avatar">
                     <img src="${data.header.avatar}" alt="${data.header.name} avatar">
@@ -256,8 +257,8 @@ function buildPageShell(mode, mainData) {
     if (mode === 'chronicles') {
         document.body.innerHTML = `
             <div class="page-wrapper">
-                <header class="page-header"></header>
                 <main class="main-content">
+                    <section id="hero" class="hero-section"></section>
                     <section id="posts" class="posts-section">
                         <h2>${mainData.sections.posts.title_all}</h2>
                         <div class="posts-grid"></div>
@@ -272,8 +273,8 @@ function buildPageShell(mode, mainData) {
     if (mode === 'resume') {
         document.body.innerHTML = `
             <div class="page-wrapper">
-                <header class="page-header"></header>
                 <main class="main-content">
+                    <section id="hero" class="hero-section"></section>
                     <section id="resume"></section>
                 </main>
                 <footer class="site-footer"></footer>
@@ -284,8 +285,8 @@ function buildPageShell(mode, mainData) {
 
     document.body.innerHTML = `
         <div class="page-wrapper">
-            <header class="page-header"></header>
             <main class="main-content">
+                <section id="hero" class="hero-section"></section>
                 <section id="resume"></section>
                 <section id="posts" class="posts-section">
                     <h2>${mainData.sections.posts.title_home}</h2>
