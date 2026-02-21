@@ -6,15 +6,15 @@
     "navigation": [
       {
         "text": "🧙‍♂️ About",
-        "href": "#about"
+        "href": "index.html#about"
       },
       {
         "text": "📜 Chronicles",
-        "href": "#posts"
+        "href": "chronicles.html"
       },
       {
         "text": "🏰 Contact",
-        "href": "#contact"
+        "href": "index.html#contact"
       }
     ]
   },

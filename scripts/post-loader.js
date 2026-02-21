@@ -8,7 +8,7 @@ async function loadPost() {
         return;
     }
 
-    const postsData = await loadJSON('./posts/posts.json');
+    const postsData = await loadJSON('./data/posts.json');
     if (!postsData) {
         window.location.href = 'index.html';
         return;

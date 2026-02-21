@@ -124,7 +124,7 @@ function createPostCards(posts) {
             <div class="post-date">${new Date(post.date).toLocaleDateString()}</div>
             <p>${post.description}</p>
             <div class="post-links">
-                <a href="./posts/${post.id}.md" class="post-link read-more" data-post-id="${post.id}">Read More</a>
+                <a href="post.html?id=${post.id}" class="post-link">Read More</a>
             </div>
         </div>
     `).join('');
@@ -140,7 +140,18 @@ async function populatePosts() {
         if (!postsData) {
             throw new Error('Failed to load posts data');
         }
-        postsContainer.innerHTML = createPostCards(postsData.posts);
+        const posts = postsData.posts || [];
+        const mode = document.body.dataset.page || 'home';
+        const visiblePosts = mode === 'home' ? posts.slice(0, 3) : posts;
+        postsContainer.innerHTML = createPostCards(visiblePosts);
+
+        if (mode === 'home') {
+            const moreLink = document.createElement('a');
+            moreLink.href = 'chronicles.html';
+            moreLink.className = 'btn';
+            moreLink.textContent = '📜 View All Chronicles';
+            postsContainer.parentElement.appendChild(moreLink);
+        }
     } catch (error) {
         console.error('Error loading posts:', error);
         postsContainer.innerHTML = `
@@ -186,27 +197,38 @@ function updateDocumentMetadata(data) {
         `Personal portfolio and blog of ${data.header.subtitle} (${data.header.title.replace(/⚔️/g, '').trim()}) - ${data.header.tagline.replace(/Lvl\.99/g, '')}`;
 }
 
-// Add event listener for post clicks
-function initializePostLinks() {
-    document.addEventListener('click', async (e) => {
-        if (e.target.classList.contains('read-more')) {
-            e.preventDefault();
-            const postId = e.target.dataset.postId;
-            try {
-                const content = await loadMarkdown(`./posts/${postId}.md`);
-                // Create a modal or update page content with the markdown
-                const mainContent = document.querySelector('.main-content');
-                mainContent.innerHTML = `
-                    <section id="post-content">
-                        ${content}
-                        <a href="./index.html" class="btn post-link">Back</a>
+function buildPageShell(mode) {
+    if (mode === 'chronicles') {
+        document.body.innerHTML = `
+            <div class="page-wrapper">
+                <header class="page-header"></header>
+                <main class="main-content">
+                    <section id="posts" class="posts-section">
+                        <h2>📜 Chronicles</h2>
+                        <div class="posts-grid"></div>
                     </section>
-                `;
-            } catch (error) {
-                console.error('Error loading post:', error);
-            }
-        }
-    });
+                </main>
+                <footer class="site-footer"></footer>
+            </div>
+        `;
+        return;
+    }
+
+    document.body.innerHTML = `
+        <div class="page-wrapper">
+            <header class="page-header"></header>
+            <main class="main-content">
+                <section id="about"></section>
+                <section id="posts" class="posts-section">
+                    <h2>📜 Chronicles</h2>
+                    <div class="posts-grid"></div>
+                </section>
+                <section id="chronicles"></section>
+                <section id="contact"></section>
+            </main>
+            <footer class="site-footer"></footer>
+        </div>
+    `;
 }
 
 // Main function to initialize the page
@@ -216,30 +238,19 @@ async function initializePage() {
         if (!mainData) {
             throw new Error('Failed to load main data');
         }
-
-        document.body.innerHTML = `
-            <div class="page-wrapper">
-                <header class="page-header"></header>
-                <main class="main-content">
-                    <section id="about"></section>
-                    <section id="posts" class="posts-section">
-                        <h2>Chronicles</h2>
-                        <div class="posts-grid"></div>
-                    </section>
-                    <section id="chronicles"></section>
-                    <section id="contact"></section>
-                </main>
-                <footer class="site-footer"></footer>
-            </div>
-        `;
+        const mode = document.body.dataset.page || 'home';
+        buildPageShell(mode);
         
         updateDocumentMetadata(mainData);
         populateHeader(mainData);
-        populateAbout(mainData);
+        if (mode === 'home') {
+            populateAbout(mainData);
+        }
         await populatePosts();
-        populateContact(mainData);
+        if (mode === 'home') {
+            populateContact(mainData);
+        }
         populateFooter(mainData);
-        initializePostLinks();
     } catch (error) {
         console.error('Error initializing page:', error);
     }
