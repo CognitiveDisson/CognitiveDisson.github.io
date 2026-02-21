@@ -16,6 +16,9 @@
   --pixel-border: 4px;
   --gradient: linear-gradient(120deg, #4a1c83, #8b31ee);
   --body-font: "Space Mono", "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+  --hover-glow: 0 0 18px rgba(115, 247, 255, 0.35);
+  --hover-lift: -2px;
+  --hover-border: rgba(115, 247, 255, 0.55);
 }
 
 /* Keyframes */
@@ -306,8 +309,8 @@ body::after {
 
 .btn:hover,
 .btn:focus-visible {
-  transform: translateY(-2px);
-  box-shadow: 0 0 18px rgba(115, 247, 255, 0.35), inset 0 0 18px rgba(139, 49, 238, 0.3);
+  transform: translateY(var(--hover-lift));
+  box-shadow: var(--hover-glow), inset 0 0 18px rgba(139, 49, 238, 0.3);
   color: #fff;
 }
 
@@ -385,7 +388,7 @@ body::after {
   padding: 0.55rem 1rem 0.55rem 2rem;
   animation: float 3s ease-in-out infinite;
   position: relative;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .skill-tag::before {
@@ -418,14 +421,16 @@ body::after {
   border-radius: 3px;
 }
 
-.skill-tag:hover::before {
+.skill-tag:hover::before,
+.skill-tag:focus-visible::before {
   opacity: 1;
-  transform: scale(1.1);
 }
 
-.skill-tag:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 0 16px rgba(115, 247, 255, 0.3);
+.skill-tag:hover,
+.skill-tag:focus-visible {
+  transform: translateY(var(--hover-lift));
+  box-shadow: var(--hover-glow);
+  border-color: var(--hover-border);
 }
 
 /* Experience + Education */
@@ -487,7 +492,7 @@ body::after {
 }
 
 .project-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(calc(var(--hover-lift) * 3));
   box-shadow: 0 0 28px rgba(115, 247, 255, 0.3), inset 0 0 24px rgba(139, 49, 238, 0.2);
 }
 
@@ -529,8 +534,8 @@ body::after {
 }
 
 .post-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 0 20px rgba(139, 49, 238, 0.5);
+  transform: translateY(calc(var(--hover-lift) * 2));
+  box-shadow: var(--hover-glow);
 }
 
 .post-card:hover::after {
@@ -606,6 +611,12 @@ body::after {
 .social-link:focus-visible {
   transform: translateX(4px);
   color: #fff;
+}
+
+.post-link:hover,
+.post-link:focus-visible {
+  color: #fff;
+  text-shadow: 0 0 8px rgba(115, 247, 255, 0.4);
 }
 
 .social-link:hover::before,
