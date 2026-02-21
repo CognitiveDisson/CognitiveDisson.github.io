@@ -223,7 +223,6 @@ function buildPageShell(mode) {
                     <h2>📜 Chronicles</h2>
                     <div class="posts-grid"></div>
                 </section>
-                <section id="chronicles"></section>
                 <section id="contact"></section>
             </main>
             <footer class="site-footer"></footer>
