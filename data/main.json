@@ -1,12 +1,19 @@
 {
   "header": {
     "title": "⚔️ CognitiveDisson ⚔️",
-    "subtitle": "Vadim Smal",
+    "name": "Vadim Smal",
+    "role": "Senior Engineer",
+    "location": "UK",
+    "avatar": "assets/avatar.jpg",
     "tagline": "Software Archmage Lvl.99",
     "navigation": [
       {
         "text": "🧙‍♂️ About",
         "href": "index.html#about"
+      },
+      {
+        "text": "📄 Adventurer's Dossier",
+        "href": "resume.html"
       },
       {
         "text": "📜 Chronicles",
@@ -17,6 +24,11 @@
         "href": "index.html#contact"
       }
     ]
+  },
+  "resume": {
+    "title": "📄 Adventurer's Dossier",
+    "summary": "Infrastructure-focused engineer with iOS/macOS experience, working across build systems, CI/CD, and release workflows to make mobile teams faster and more reliable.",
+    "cta": "Open Dossier"
   },
   "about": {
     "title": "🧙‍♂️ The Mobile Sorcerer",

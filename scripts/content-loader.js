@@ -65,13 +65,20 @@ function populateHeader(data) {
     header.innerHTML = `
         <div class="rune-field"></div>
         <div class="particle-field"></div>
-        <h1 class="project-name">${data.header.title}</h1>
-        <h2 class="project-subtitle">${data.header.subtitle}</h2>
-        <p class="project-tagline">
-            ╔══════════════════╗<br>
-            ${data.header.tagline}<br>
-            ╚══════════════════╝
-        </p>
+        <div class="hero">
+            <div class="hero-avatar">
+                <img src="${data.header.avatar}" alt="${data.header.name} avatar">
+            </div>
+            <div class="hero-text">
+                <div class="hero-name">${data.header.name}</div>
+                <div class="hero-meta">
+                    <span class="hero-role">${data.header.role}</span>
+                    <span class="hero-location">📍 ${data.header.location}</span>
+                </div>
+                <div class="hero-badge">${data.header.title}</div>
+                <div class="hero-tagline">${data.header.tagline}</div>
+            </div>
+        </div>
         <nav class="header-nav">
             ${createNavButtons(data.header.navigation)}
         </nav>
@@ -192,9 +199,61 @@ function populateFooter(data) {
 
 // Function to update document metadata
 function updateDocumentMetadata(data) {
-    document.title = `${data.header.title.replace(/⚔️/g, '').trim()} | ${data.header.subtitle}`;
+    document.title = `${data.header.name} | ${data.header.role}`;
     document.querySelector('meta[name="description"]').content = 
-        `Personal portfolio and blog of ${data.header.subtitle} (${data.header.title.replace(/⚔️/g, '').trim()}) - ${data.header.tagline.replace(/Lvl\.99/g, '')}`;
+        `Personal portfolio and blog of ${data.header.name} (${data.header.title.replace(/⚔️/g, '').trim()}) - ${data.header.role}`;
+}
+
+function populateResumeSection(data) {
+    const resume = document.getElementById('resume');
+    if (!resume) return;
+    resume.innerHTML = `
+        <h2>${data.resume.title}</h2>
+        <div class="resume-card">
+            <p>${data.resume.summary}</p>
+            <a href="resume.html" class="btn">${data.resume.cta}</a>
+        </div>
+    `;
+}
+
+function populateResumePage(data) {
+    const resume = document.getElementById('resume');
+    if (!resume) return;
+    resume.innerHTML = `
+        <h2>${data.resume.title}</h2>
+        <div class="resume-card full">
+            <p>${data.resume.summary}</p>
+
+            <div class="resume-block">
+                <h3>${data.about.skills.title}</h3>
+                <div class="skill-tags">
+                    ${createSkillTags(data.about.skills.items)}
+                </div>
+            </div>
+
+            <div class="resume-block">
+                <h3>${data.about.experience.title}</h3>
+                ${data.about.experience.items.map(exp => `
+                    <div class="experience-item">
+                        <h4>${exp.company}</h4>
+                        <p class="role">${exp.role}</p>
+                        <p class="duration">${exp.duration}</p>
+                    </div>
+                `).join('')}
+            </div>
+
+            <div class="resume-block">
+                <h3>${data.about.education.title}</h3>
+                ${data.about.education.items.map(edu => `
+                    <div class="education-item">
+                        <h4>${edu.school}</h4>
+                        <p>${edu.degree}</p>
+                        <p class="duration">${edu.duration}</p>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
 }
 
 function buildPageShell(mode) {
@@ -214,13 +273,27 @@ function buildPageShell(mode) {
         return;
     }
 
+    if (mode === 'resume') {
+        document.body.innerHTML = `
+            <div class="page-wrapper">
+                <header class="page-header"></header>
+                <main class="main-content">
+                    <section id="resume"></section>
+                </main>
+                <footer class="site-footer"></footer>
+            </div>
+        `;
+        return;
+    }
+
     document.body.innerHTML = `
         <div class="page-wrapper">
             <header class="page-header"></header>
             <main class="main-content">
                 <section id="about"></section>
+                <section id="resume"></section>
                 <section id="posts" class="posts-section">
-                    <h2>📜 Chronicles</h2>
+                    <h2>📜 My Latest Chronicles</h2>
                     <div class="posts-grid"></div>
                 </section>
                 <section id="contact"></section>
@@ -245,6 +318,10 @@ async function initializePage() {
         populateHeader(mainData);
         if (mode === 'home') {
             populateAbout(mainData);
+            populateResumeSection(mainData);
+        }
+        if (mode === 'resume') {
+            populateResumePage(mainData);
         }
         await populatePosts();
         if (mode === 'home') {

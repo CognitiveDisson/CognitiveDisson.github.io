@@ -36,6 +36,9 @@ function initializeAnimations(root = document) {
 
     const experienceItems = root.querySelectorAll('.experience-item, .education-item');
     experienceItems.forEach((item, index) => registerReveal(item, 160 + index * 50));
+
+    const resumeCards = root.querySelectorAll('.resume-card, .resume-block');
+    resumeCards.forEach((card, index) => registerReveal(card, 140 + index * 70));
 }
 
 const mutationObserver = new MutationObserver((mutations) => {

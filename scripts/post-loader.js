@@ -20,15 +20,38 @@ async function loadPost() {
         return;
     }
 
-    // Load main data for site title
+    // Load main data for site header
     const mainData = await loadJSON('./data/main.json');
-    const baseTitle = mainData?.header?.title?.replace(/⚔️/g, '').trim() || 'My Blog';
-    
-    // Update page title
-    document.title = `${post.title} | ${baseTitle}`;
+    const siteName = mainData?.header?.name || 'My Blog';
 
-    // Update header with post title
-    document.getElementById('project-name').textContent = post.title.replace(/⚔️/g, '').trim();
+    // Update page title
+    document.title = `${post.title} | ${siteName}`;
+
+    // Populate header
+    if (mainData?.header) {
+        const header = document.querySelector('.page-header');
+        header.innerHTML = `
+            <div class="rune-field"></div>
+            <div class="particle-field"></div>
+            <div class="hero">
+                <div class="hero-avatar">
+                    <img src="${mainData.header.avatar}" alt="${mainData.header.name} avatar">
+                </div>
+                <div class="hero-text">
+                    <div class="hero-name">${mainData.header.name}</div>
+                    <div class="hero-meta">
+                        <span class="hero-role">${mainData.header.role}</span>
+                        <span class="hero-location">📍 ${mainData.header.location}</span>
+                    </div>
+                    <div class="hero-badge">${mainData.header.title}</div>
+                    <div class="hero-tagline">${mainData.header.tagline}</div>
+                </div>
+            </div>
+            <nav class="header-nav">
+                ${mainData.header.navigation.map(nav => `<a href="${nav.href}" class="btn">${nav.text}</a>`).join('')}
+            </nav>
+        `;
+    }
 
     // Load post content from markdown file
     const postContent = document.getElementById('post-content');
