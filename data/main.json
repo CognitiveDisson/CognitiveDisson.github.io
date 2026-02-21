@@ -6,12 +6,7 @@
     "location": "UK",
     "avatar": "assets/avatar.jpg",
     "tagline": "Software Archmage Lvl.99",
-    "navigation": [
-      {
-        "text": "🏰 Contact",
-        "href": "index.html#contact"
-      }
-    ]
+    "navigation": []
   },
   "sections": {
     "resume": {
