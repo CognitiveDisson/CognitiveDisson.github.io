@@ -65,23 +65,22 @@ function populateHeader(data) {
     header.innerHTML = `
         <div class="rune-field"></div>
         <div class="particle-field"></div>
-        <div class="hero">
-            <div class="hero-avatar">
-                <img src="${data.header.avatar}" alt="${data.header.name} avatar">
-            </div>
-            <div class="hero-text">
-                <div class="hero-name">${data.header.name}</div>
-                <div class="hero-meta">
-                    <span class="hero-role">${data.header.role}</span>
-                    <span class="hero-location">📍 ${data.header.location}</span>
+        <div class="hero-card">
+            <div class="hero">
+                <div class="hero-avatar">
+                    <img src="${data.header.avatar}" alt="${data.header.name} avatar">
                 </div>
-                <div class="hero-badge">${data.header.title}</div>
-                <div class="hero-tagline">${data.header.tagline}</div>
+                <div class="hero-text">
+                    <div class="hero-name">${data.header.name}</div>
+                    <div class="hero-meta">
+                        <span class="hero-role">${data.header.role}</span>
+                        <span class="hero-location">📍 ${data.header.location}</span>
+                    </div>
+                    <div class="hero-badge">${data.header.title}</div>
+                    <div class="hero-tagline">${data.header.tagline}</div>
+                </div>
             </div>
         </div>
-        <nav class="header-nav">
-            ${createNavButtons(data.header.navigation)}
-        </nav>
     `;
 }
 
@@ -126,14 +125,14 @@ function populateAbout(data) {
 // Function to create post cards
 function createPostCards(posts) {
     return posts.map(post => `
+        <a class="post-card-link" href="post.html?id=${post.id}">
         <div class="post-card" data-post-id="${post.id}">
+            <div class="card-icon">📖</div>
             <h3>${post.title}</h3>
             <div class="post-date">${new Date(post.date).toLocaleDateString()}</div>
             <p>${post.description}</p>
-            <div class="post-links">
-                <a href="post.html?id=${post.id}" class="post-link">Read More</a>
-            </div>
         </div>
+        </a>
     `).join('');
 }
 
@@ -152,13 +151,6 @@ async function populatePosts() {
         const visiblePosts = mode === 'home' ? posts.slice(0, 3) : posts;
         postsContainer.innerHTML = createPostCards(visiblePosts);
 
-        if (mode === 'home') {
-            const moreLink = document.createElement('a');
-            moreLink.href = 'chronicles.html';
-            moreLink.className = 'btn';
-            moreLink.textContent = '📜 View All Chronicles';
-            postsContainer.parentElement.appendChild(moreLink);
-        }
     } catch (error) {
         console.error('Error loading posts:', error);
         postsContainer.innerHTML = `
@@ -204,36 +196,40 @@ function updateDocumentMetadata(data) {
         `Personal portfolio and blog of ${data.header.name} (${data.header.title.replace(/⚔️/g, '').trim()}) - ${data.header.role}`;
 }
 
-function populateResumeSection(data) {
+function populateResumeSection(mainData, cvData) {
     const resume = document.getElementById('resume');
     if (!resume) return;
     resume.innerHTML = `
-        <h2>${data.resume.title}</h2>
-        <div class="resume-card">
-            <p>${data.resume.summary}</p>
-            <a href="resume.html" class="btn">${data.resume.cta}</a>
-        </div>
+        <h2>${mainData.sections.resume.title}</h2>
+        <a class="resume-card-link" href="resume.html">
+            <div class="resume-card">
+                <div class="card-icon">📄</div>
+                <p>${cvData.summary}</p>
+            </div>
+        </a>
     `;
 }
 
-function populateResumePage(data) {
+function populateResumePage(cvData) {
     const resume = document.getElementById('resume');
     if (!resume) return;
     resume.innerHTML = `
-        <h2>${data.resume.title}</h2>
+        <div class="resume-header">
+            <a class="resume-back" href="index.html">← Back</a>
+            <h2 class="resume-title">${cvData.title}</h2>
+            <p class="resume-subtitle">${cvData.summary}</p>
+        </div>
         <div class="resume-card full">
-            <p>${data.resume.summary}</p>
-
             <div class="resume-block">
-                <h3>${data.about.skills.title}</h3>
+                <h3>${cvData.skills.title}</h3>
                 <div class="skill-tags">
-                    ${createSkillTags(data.about.skills.items)}
+                    ${createSkillTags(cvData.skills.items)}
                 </div>
             </div>
 
             <div class="resume-block">
-                <h3>${data.about.experience.title}</h3>
-                ${data.about.experience.items.map(exp => `
+                <h3>${cvData.experience.title}</h3>
+                ${cvData.experience.items.map(exp => `
                     <div class="experience-item">
                         <h4>${exp.company}</h4>
                         <p class="role">${exp.role}</p>
@@ -243,8 +239,8 @@ function populateResumePage(data) {
             </div>
 
             <div class="resume-block">
-                <h3>${data.about.education.title}</h3>
-                ${data.about.education.items.map(edu => `
+                <h3>${cvData.education.title}</h3>
+                ${cvData.education.items.map(edu => `
                     <div class="education-item">
                         <h4>${edu.school}</h4>
                         <p>${edu.degree}</p>
@@ -256,14 +252,14 @@ function populateResumePage(data) {
     `;
 }
 
-function buildPageShell(mode) {
+function buildPageShell(mode, mainData) {
     if (mode === 'chronicles') {
         document.body.innerHTML = `
             <div class="page-wrapper">
                 <header class="page-header"></header>
                 <main class="main-content">
                     <section id="posts" class="posts-section">
-                        <h2>📜 Chronicles</h2>
+                        <h2>${mainData.sections.posts.title_all}</h2>
                         <div class="posts-grid"></div>
                     </section>
                 </main>
@@ -292,7 +288,7 @@ function buildPageShell(mode) {
             <main class="main-content">
                 <section id="resume"></section>
                 <section id="posts" class="posts-section">
-                    <h2>📜 My Latest Chronicles</h2>
+                    <h2>${mainData.sections.posts.title_home}</h2>
                     <div class="posts-grid"></div>
                 </section>
                 <section id="contact"></section>
@@ -305,21 +301,24 @@ function buildPageShell(mode) {
 // Main function to initialize the page
 async function initializePage() {
     try {
-        const mainData = await loadJSON('./data/main.json');
-        if (!mainData) {
+        const [mainData, cvData] = await Promise.all([
+            loadJSON('./data/main.json'),
+            loadJSON('./data/cv.json')
+        ]);
+        if (!mainData || !cvData) {
             throw new Error('Failed to load main data');
         }
         const mode = document.body.dataset.page || 'home';
-        buildPageShell(mode);
+        buildPageShell(mode, mainData);
         document.querySelectorAll('#chronicles').forEach((el) => el.remove());
         
         updateDocumentMetadata(mainData);
         populateHeader(mainData);
         if (mode === 'home') {
-            populateResumeSection(mainData);
+            populateResumeSection(mainData, cvData);
         }
         if (mode === 'resume') {
-            populateResumePage(mainData);
+            populateResumePage(cvData);
         }
         await populatePosts();
         if (mode === 'home') {
