@@ -442,6 +442,24 @@ body::after {
   text-shadow: 0 0 8px rgba(115, 247, 255, 0.35);
 }
 
+.section-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  margin: 0.5rem 0 1rem;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.section-link:hover,
+.section-link:focus-visible {
+  color: #fff;
+  transform: translateX(2px);
+}
+
 /* Resume */
 .resume-card {
   background: rgba(19, 19, 27, 0.7);
@@ -464,17 +482,6 @@ body::after {
   color: var(--text-color);
 }
 
-.card-icon {
-  width: 34px;
-  height: 34px;
-  border-radius: 10px;
-  background: rgba(115, 247, 255, 0.12);
-  border: 1px solid rgba(115, 247, 255, 0.4);
-  display: grid;
-  place-items: center;
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-}
 
 .resume-card-link {
   text-decoration: none;

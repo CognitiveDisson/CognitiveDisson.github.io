@@ -128,7 +128,6 @@ function createPostCards(posts) {
     return posts.map(post => `
         <a class="post-card-link" href="post.html?id=${post.id}">
         <div class="post-card" data-post-id="${post.id}">
-            <div class="card-icon">📖</div>
             <h3>${post.title}</h3>
             <div class="post-date">${new Date(post.date).toLocaleDateString()}</div>
             <p>${post.description}</p>
@@ -204,7 +203,6 @@ function populateResumeSection(mainData, cvData) {
         <h2>${mainData.sections.resume.title}</h2>
         <a class="resume-card-link" href="resume.html">
             <div class="resume-card">
-                <div class="card-icon">📄</div>
                 <p>${cvData.summary}</p>
             </div>
         </a>
@@ -290,6 +288,7 @@ function buildPageShell(mode, mainData) {
                 <section id="resume"></section>
                 <section id="posts" class="posts-section">
                     <h2>${mainData.sections.posts.title_home}</h2>
+                    <a class="section-link" href="chronicles.html">View all chronicles →</a>
                     <div class="posts-grid"></div>
                 </section>
                 <section id="contact"></section>
