@@ -48,7 +48,7 @@ function createNavButtons(navigation) {
 // Function to create skill tags
 function createSkillTags(skills) {
     return skills.map(skill => 
-        `<span class="skill-tag">${skill}</span>`
+        `<span class="skill-tag"><span class="rune"></span>${skill}</span>`
     ).join('');
 }
 
@@ -88,9 +88,7 @@ function populateAbout(data) {
         <div class="skills-container">
             <h3>${data.about.skills.title}</h3>
             <div class="skill-tags">
-                ${data.about.skills.items.map(skill => 
-                    `<span class="skill-tag">${skill}</span>`
-                ).join('')}
+                ${createSkillTags(data.about.skills.items)}
             </div>
         </div>
 
