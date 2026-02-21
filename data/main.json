@@ -20,7 +20,7 @@
   },
   "about": {
     "title": "🧙‍♂️ The Mobile Sorcerer",
-    "description": "I'm an experienced Software Engineer with iOS and macOS development background, specializing in mobile development infrastructure. Key areas include build systems like Xcode Build System and Bazel, build time optimization, mobile application architecture, development environment, CI/CD, and release management.",
+    "description": "Software engineer with iOS/macOS experience, focused on mobile development infrastructure: build systems (Xcode, Bazel), build time optimization, CI/CD, release management, and application architecture.",
     "skills": {
       "title": "⚡ Dark Arts & Spells",
       "items": [
