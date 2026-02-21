@@ -84,7 +84,6 @@
 
 /* Base */
 html, body {
-  height: 100%;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -102,6 +101,9 @@ body {
   image-rendering: pixelated;
   color: var(--text-color);
   min-height: 100vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
   opacity: 1;
   transition: opacity 0.3s ease-in-out;
   position: relative;
