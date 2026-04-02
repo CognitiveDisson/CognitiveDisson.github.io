@@ -2,7 +2,7 @@
 async function loadPost() {
     const urlParams = new URLSearchParams(window.location.search);
     const postId = urlParams.get('id');
-    
+
     if (!postId) {
         window.location.href = 'index.html';
         return;
@@ -14,7 +14,8 @@ async function loadPost() {
         return;
     }
 
-    const post = postsData.posts.find(p => p.id === postId);
+    const posts = postsData.posts || [];
+    const post = posts.find(p => p.id === postId);
     if (!post) {
         window.location.href = 'index.html';
         return;
@@ -72,32 +73,7 @@ async function loadPost() {
     }
 }
 
-// Function to load JSON data
-async function loadJSON(url) {
-    try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error('Network response was not ok');
-        return await response.json();
-    } catch (error) {
-        console.error('Error loading JSON:', error);
-        return null;
-    }
-}
-
-// Function to load markdown content
-async function loadMarkdown(url) {
-    try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error('Network response was not ok');
-        const text = await response.text();
-        return marked.parse(text);
-    } catch (error) {
-        console.error('Error loading markdown:', error);
-        return `<p>Error loading post content: ${error.message}</p>`;
-    }
-}
-
-// Function to load footer content
+// Load footer content
 async function loadFooter() {
     const data = await loadJSON('./data/main.json');
     if (data) {

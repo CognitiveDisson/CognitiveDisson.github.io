@@ -1,60 +1,20 @@
-// Function to load JSON data
-async function loadJSON(url) {
-    try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error('Network response was not ok');
-        return await response.json();
-    } catch (error) {
-        console.error('Error loading JSON:', error);
-        return null;
-    }
-}
-
-// Function to load markdown content
-async function loadMarkdown(url) {
-    try {
-        console.log('Loading markdown from:', url);
-        const response = await fetch(url);
-        if (!response.ok) {
-            console.error('Failed to load markdown:', response.statusText);
-            throw new Error('Network response was not ok');
-        }
-        const text = await response.text();
-        console.log('Markdown content loaded:', text.substring(0, 100) + '...');
-        return marked.parse(text, {
-            gfm: true,
-            breaks: true,
-            headerIds: true
-        });
-    } catch (error) {
-        console.error('Error loading markdown:', error);
-        // Fallback content for local development
-        return `
-            <h1>Error Loading Post</h1>
-            <p>Could not load the post content. Please make sure you're running a local server.</p>
-            <p>Error: ${error.message}</p>
-            <p>Try running: <code>python -m http.server 8000</code></p>
-        `;
-    }
-}
-
 // Function to create navigation buttons
 function createNavButtons(navigation) {
-    return navigation.map(nav => 
+    return navigation.map(nav =>
         `<a href="${nav.href}" class="btn">${nav.text}</a>`
     ).join('');
 }
 
 // Function to create skill tags
 function createSkillTags(skills) {
-    return skills.map(skill => 
+    return skills.map(skill =>
         `<span class="skill-tag"><span class="rune"></span>${skill}</span>`
     ).join('');
 }
 
 // Function to create social links
 function createSocialLinks(social) {
-    return social.map(link => 
+    return social.map(link =>
         `<a href="${link.url}" class="social-link">${link.name}</a>`
     ).join('');
 }
@@ -91,7 +51,7 @@ function populateAbout(data) {
     about.innerHTML = `
         <h2>${data.about.title}</h2>
         <p>${data.about.description}</p>
-        
+
         <div class="skills-container">
             <h3>${data.about.skills.title}</h3>
             <div class="skill-tags">
@@ -156,7 +116,7 @@ async function populatePosts() {
         postsContainer.innerHTML = `
             <div class="error-message">
                 <h3>Failed to load posts</h3>
-                <p>Error: ${error.message}</p>
+                <p>${escapeHTML(error.message)}</p>
             </div>
         `;
     }
@@ -169,7 +129,7 @@ function populateContact(data) {
         <h2>${data.contact.title}</h2>
         <p>${data.contact.description}</p>
         <div class="social-links">
-            ${data.contact.social.map(link => 
+            ${data.contact.social.map(link =>
                 `<a href="${link.url}" class="social-link">${link.name}</a>`
             ).join('')}
         </div>
@@ -192,7 +152,7 @@ function populateFooter(data) {
 // Function to update document metadata
 function updateDocumentMetadata(data) {
     document.title = `${data.header.name} | ${data.header.role}`;
-    document.querySelector('meta[name="description"]').content = 
+    document.querySelector('meta[name="description"]').content =
         `Personal portfolio and blog of ${data.header.name} (${data.header.title.replace(/⚔️/g, '').trim()}) - ${data.header.role}`;
 }
 
@@ -310,8 +270,7 @@ async function initializePage() {
         }
         const mode = document.body.dataset.page || 'home';
         buildPageShell(mode, mainData);
-        document.querySelectorAll('#chronicles').forEach((el) => el.remove());
-        
+
         updateDocumentMetadata(mainData);
         populateHeader(mainData);
         if (mode === 'home') {
